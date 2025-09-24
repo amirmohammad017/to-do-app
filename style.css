@@ -24,7 +24,7 @@ body {
   border-radius: 12px;
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* Header */
@@ -34,7 +34,11 @@ header h1 {
   font-size: 1.8rem;
   letter-spacing: 1px;
 }
-
+/* main */
+main {
+  display: flex;
+  flex-direction: column;
+}
 /* Input group */
 .input-group {
   display: flex;
@@ -108,4 +112,19 @@ header h1 {
 
 .delete-btn:hover {
   background: darkred;
+}
+#clear-list {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 6px;
+  background: #ff9900;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: 0.3s;
+}
+#clear-list:hover {
+  background-color: rgb(217, 130, 0);
 }
