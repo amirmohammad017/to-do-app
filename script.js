@@ -35,3 +35,9 @@ addTaskBtn.addEventListener("click", () => {
     });
   }
 });
+
+// Add clear list
+const clearList = document.getElementById('clear-list');
+clearList.addEventListener('click', ()=>{
+  taskList.innerHTML = ``;
+})
