@@ -60,6 +60,10 @@ main {
   color: #aaa;
 }
 
+.input-group input::selection {
+  background-color: #0f2027;
+}
+
 .input-group button {
   padding: 10px 20px;
   border: none;
@@ -111,8 +115,11 @@ li input {
 li input:enabled {
   border-bottom: 1px solid #ffffff42;
 }
-.task-text {
-  flex: 1;
+li input::placeholder {
+  color: #cfcfcf;
+}
+li input::selection {
+  background-color: #0f2027;
 }
 li div {
   position: relative;
@@ -159,9 +166,9 @@ li i:hover {
   cursor: pointer;
   transition: all 0.3s;
 }
-.btn-active {
-  pointer-events: all;
-  opacity: 1;
+.btn-block {
+  pointer-events: none;
+  filter: brightness(50%);
 }
 .btn-disable {
   pointer-events: none;
@@ -183,5 +190,5 @@ li i:hover {
   transition: 0.3s;
 }
 #clear-list:hover {
-  background-color: rgb(217, 130, 0);
+  background-color: rgb(216, 105, 0);
 }
