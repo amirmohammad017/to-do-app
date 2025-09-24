@@ -94,13 +94,47 @@ main {
 #task-list li:hover {
   background: rgba(255, 255, 255, 0.15);
 }
-
+li input {
+  flex: 1;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: 1px solid #ffffff00;
+  border-radius: 0;
+  /* background: rgba(255, 255, 255, 0.1); */
+  color: #fff;
+  transition: all 0.3s;
+}
+li input:enabled {
+  border-bottom: 1px solid #ffffff42;
+}
 .task-text {
   flex: 1;
 }
-
+li div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+li i {
+  color: #ffffff;
+  font-size: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+li i:hover {
+  color: #bebebe;
+}
+.button-group {
+  position: relative;
+}
 .delete-btn {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   background: crimson;
   border: none;
   color: #fff;
@@ -112,6 +146,29 @@ main {
 
 .delete-btn:hover {
   background: darkred;
+}
+.edit-done-btn {
+  position: absolute;
+  right: 0;
+  width: 80px;
+  background-color: rgb(0, 211, 18);
+  border: none;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-active {
+  pointer-events: all;
+  opacity: 1;
+}
+.btn-disable {
+  pointer-events: none;
+  opacity: 0;
+}
+.edit-done-btn:hover {
+  background-color: rgb(0, 168, 14);
 }
 #clear-list {
   padding: 10px 20px;
