@@ -2,7 +2,9 @@
 const taskInput = document.getElementById("task-input");
 const addTaskBtn = document.getElementById("add-task-btn");
 const taskList = document.getElementById("task-list");
+const data = [];
 
+// Functions
 const editAction_block = () => {
   const lists = document.querySelectorAll("li");
 
@@ -18,6 +20,15 @@ const editAction_unBlock = () => {
   });
 };
 
+const loadFromLocalStorage = () => {
+  if (localStorage.getItem("**myToDoListApp**")) {
+    data = JSON.parse(localStorage.getItem('**myToDoListApp**'));
+  }
+
+};
+const saveToLocalStorage = ()=>{
+  localStorage.setItem('**myToDoListApp**',JSON.stringify(data));
+}
 // Add Task Event
 addTaskBtn.addEventListener("click", () => {
   const taskText = taskInput.value.trim();
