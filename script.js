@@ -24,10 +24,27 @@ const loadFromLocalStorage = () => {
   if (localStorage.getItem("**myToDoListApp**")) {
     data = JSON.parse(localStorage.getItem("**myToDoListApp**"));
   } else {
-    data = ["First task", "Second task"];
+    data = [
+      {
+        taskSubject: "First task",
+        taskCheck: true,
+      },
+      {
+        taskSubject: "Second task",
+        taskCheck: false,
+      },
+      {
+        taskSubject: "Third task",
+        taskCheck: false,
+      },
+    ];
   }
   data.forEach((item) => {
-    addTask(item);
+    if (item.taskCheck == true) {
+      addTask(item.taskSubject, true);
+    } else {
+      addTask(item.taskSubject, false);
+    }
   });
 };
 const saveToLocalStorage = () => {
@@ -35,15 +52,22 @@ const saveToLocalStorage = () => {
   data = [];
   list.forEach((element) => {
     const item = element.querySelector("input");
-    data.push(item.value);
+    const info = {
+      taskSubject: `${item.value}`,
+      taskCheck: element.classList.contains("active"),
+    };
+    data.push(info);
   });
   localStorage.setItem("**myToDoListApp**", JSON.stringify(data));
 };
 
-const addTask = (taskText) => {
+const addTask = (taskText, taskCheck) => {
   if (taskText !== "") {
     // Create <li>
     const li = document.createElement("li");
+    if (taskCheck) {
+      li.classList.add("active");
+    }
 
     // Task text
     const input = document.createElement("input");
@@ -59,7 +83,16 @@ const addTask = (taskText) => {
     const checkBtn = document.createElement("i");
     edit_done_btn.classList.add("edit-done-btn", "btn-disable");
     deleteBtn.classList.add("delete-btn");
-    checkBtn.classList.add("fa-regular", "fa-circle", "check-btn");
+    if (taskCheck) {
+      checkBtn.classList.add(
+        "fa-regular",
+        "fa-check-circle",
+        "check-btn",
+        "active"
+      );
+    } else {
+      checkBtn.classList.add("fa-regular", "fa-circle", "check-btn");
+    }
     editBtn.classList.add("fa-regular", "fa-pen-to-square", "edit-btn");
     edit_done_btn.textContent = "Done";
     deleteBtn.textContent = "Delete";
@@ -82,6 +115,7 @@ const addTask = (taskText) => {
       checkBtn.classList.toggle("fa-circle");
       checkBtn.classList.toggle("fa-check-circle");
       li.classList.toggle("active");
+      saveToLocalStorage();
     });
     // Edit action
     editBtn.addEventListener("click", () => {
