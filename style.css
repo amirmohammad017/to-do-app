@@ -5,13 +5,13 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-button:active{
+button:active {
   transform: scale(1.1);
   /* transition: transform ease 0.8s; */
 }
 /* Background */
 body {
-  padding-top:200px ;
+  padding-top: 200px;
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   min-height: 100vh;
   color: #fff;
@@ -96,6 +96,9 @@ main {
   align-items: center;
   transition: 0.3s;
 }
+#task-list li.active {
+  box-shadow: 0px 0px 10px -2px rgba(0, 199, 0, 1);
+}
 
 #task-list li:hover {
   background: rgba(255, 255, 255, 0.15);
@@ -136,14 +139,20 @@ li i {
   cursor: pointer;
   transition: 0.3s;
 }
-li i:hover {
+li i.check-btn {
+  color: #00c6ff;
+}
+li i.check-btn:hover {
+  filter: brightness(85%);
+}
+li i.check-btn.active {
+  color: rgb(0, 199, 0);
+}
+li i.edit-btn:hover {
   color: #bebebe;
 }
-.button-group {
-  position: relative;
-}
+
 .delete-btn {
-  /* margin-left: 10px; */
   background: crimson;
   border: none;
   color: #fff;

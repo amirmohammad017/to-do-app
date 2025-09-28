@@ -24,7 +24,7 @@ const loadFromLocalStorage = () => {
   if (localStorage.getItem("**myToDoListApp**")) {
     data = JSON.parse(localStorage.getItem("**myToDoListApp**"));
   } else {
-    data = ['First task','Second task'];
+    data = ["First task", "Second task"];
   }
   data.forEach((item) => {
     addTask(item);
@@ -55,15 +55,18 @@ const addTask = (taskText) => {
     const div = document.createElement("div");
     const edit_done_btn = document.createElement("button");
     const deleteBtn = document.createElement("button");
-    const i = document.createElement("i");
+    const editBtn = document.createElement("i");
+    const checkBtn = document.createElement("i");
     edit_done_btn.classList.add("edit-done-btn", "btn-disable");
     deleteBtn.classList.add("delete-btn");
-    i.classList.add("fa-regular", "fa-pen-to-square");
+    checkBtn.classList.add("fa-regular", "fa-circle", "check-btn");
+    editBtn.classList.add("fa-regular", "fa-pen-to-square", "edit-btn");
     edit_done_btn.textContent = "Done";
     deleteBtn.textContent = "Delete";
 
     // Append
-    div.appendChild(i);
+    div.appendChild(checkBtn);
+    div.appendChild(editBtn);
     div.appendChild(deleteBtn);
     div.appendChild(edit_done_btn);
     li.appendChild(input);
@@ -73,11 +76,19 @@ const addTask = (taskText) => {
     // Clear input
     taskInput.value = "";
 
+    // check task action
+    checkBtn.addEventListener("click", () => {
+      checkBtn.classList.toggle("active");
+      checkBtn.classList.toggle("fa-circle");
+      checkBtn.classList.toggle("fa-check-circle");
+      li.classList.toggle("active");
+    });
     // Edit action
-    i.addEventListener("click", () => {
+    editBtn.addEventListener("click", () => {
       editAction_block();
       li.classList.remove("btn-block");
-      i.classList.add("btn-disable");
+      checkBtn.classList.add("btn-disable");
+      editBtn.classList.add("btn-disable");
       deleteBtn.classList.add("btn-disable");
       edit_done_btn.classList.remove("btn-disable");
       input.removeAttribute("disabled");
@@ -90,7 +101,8 @@ const addTask = (taskText) => {
     });
     edit_done_btn.addEventListener("click", () => {
       if (input.value !== "") {
-        i.classList.remove("btn-disable");
+        checkBtn.classList.remove("btn-disable");
+        editBtn.classList.remove("btn-disable");
         deleteBtn.classList.remove("btn-disable");
         edit_done_btn.classList.add("btn-disable");
         input.setAttribute("disabled", "true");
