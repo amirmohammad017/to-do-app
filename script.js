@@ -2,7 +2,9 @@
 const taskInput = document.getElementById("task-input");
 const addTaskBtn = document.getElementById("add-task-btn");
 const taskList = document.getElementById("task-list");
+let data = [];
 
+// Functions
 const editAction_block = () => {
   const lists = document.querySelectorAll("li");
 
@@ -18,10 +20,27 @@ const editAction_unBlock = () => {
   });
 };
 
-// Add Task Event
-addTaskBtn.addEventListener("click", () => {
-  const taskText = taskInput.value.trim();
+const loadFromLocalStorage = () => {
+  if (localStorage.getItem("**myToDoListApp**")) {
+    data = JSON.parse(localStorage.getItem("**myToDoListApp**"));
+  } else {
+    data = ['First task','Second task'];
+  }
+  data.forEach((item) => {
+    addTask(item);
+  });
+};
+const saveToLocalStorage = () => {
+  const list = taskList.querySelectorAll("li");
+  data = [];
+  list.forEach((element) => {
+    const item = element.querySelector("input");
+    data.push(item.value);
+  });
+  localStorage.setItem("**myToDoListApp**", JSON.stringify(data));
+};
 
+const addTask = (taskText) => {
   if (taskText !== "") {
     // Create <li>
     const li = document.createElement("li");
@@ -79,17 +98,29 @@ addTaskBtn.addEventListener("click", () => {
         addTaskBtn.classList.remove("btn-block");
         clearList.classList.remove("btn-block");
         editAction_unBlock();
+        saveToLocalStorage();
       }
     });
-    // Delete action (basic)
+    // Delete action
     deleteBtn.addEventListener("click", () => {
       li.remove();
+      saveToLocalStorage();
     });
   }
+  saveToLocalStorage();
+};
+// Add Task Event
+addTaskBtn.addEventListener("click", () => {
+  addTask(taskInput.value.trim());
 });
 
 // Add clear list
 const clearList = document.getElementById("clear-list");
 clearList.addEventListener("click", () => {
   taskList.innerHTML = ``;
+  saveToLocalStorage();
 });
+
+// Start up functions
+// =================
+loadFromLocalStorage();

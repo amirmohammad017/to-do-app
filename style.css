@@ -5,7 +5,10 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
+button:active{
+  transform: scale(1.1);
+  /* transition: transform ease 0.8s; */
+}
 /* Background */
 body {
   padding-top:200px ;
@@ -176,17 +179,32 @@ li i:hover {
 .edit-done-btn:hover {
   background-color: rgb(0, 168, 14);
 }
-#clear-list {
-  padding: 10px 20px;
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.form-btn {
+  padding-block: 10px;
   margin-top: 20px;
+  width: 80px;
   border: none;
   border-radius: 6px;
-  background: #ff9900;
   color: #fff;
   font-weight: bold;
   cursor: pointer;
   align-self: flex-end;
   transition: 0.3s;
+}
+#save-btn {
+  background-color: rgb(18, 216, 0);
+}
+#save-btn:hover {
+  background-color: rgb(13, 155, 0);
+}
+#clear-list {
+  background: #ff9900;
 }
 #clear-list:hover {
   background-color: rgb(216, 105, 0);
