@@ -8,11 +8,9 @@
 
 /* Background */
 body {
+  padding-top:200px ;
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: #fff;
 }
 
@@ -21,6 +19,7 @@ body {
   width: 400px;
   background: rgba(255, 255, 255, 0.05);
   padding: 20px;
+  margin: auto;
   border-radius: 12px;
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
