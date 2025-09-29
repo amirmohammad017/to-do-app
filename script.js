@@ -155,6 +155,49 @@ const addTask = (taskText, taskCheck) => {
   }
   saveToLocalStorage();
 };
+// Filter tasks
+const filterAllBtn = document.getElementById("filter-all");
+const filterCompleteBtn = document.getElementById("filter-complete");
+const filterPendingBtn = document.getElementById("filter-pending");
+
+function applyFilter(filterType) {
+  const tasks = document.querySelectorAll("#task-list li");
+  tasks.forEach((task) => {
+    if (filterType === "all") {
+      task.style.display = "flex";
+    } else if (filterType === "complete") {
+      task.classList.contains("active")
+        ? (task.style.display = "flex")
+        : (task.style.display = "none");
+    } else if (filterType === "pending") {
+      !task.classList.contains("active")
+        ? (task.style.display = "flex")
+        : (task.style.display = "none");
+    }
+  });
+}
+// Helper function to highlight active button
+function setActiveFilter(activeBtn) {
+  document
+    .querySelectorAll(".filter-btn")
+    .forEach((btn) => btn.classList.remove("active"));
+  activeBtn.classList.add("active");
+}
+
+// Filter event listener
+filterAllBtn.addEventListener("click", () => {
+  setActiveFilter(filterAllBtn);
+  applyFilter("all");
+});
+filterCompleteBtn.addEventListener("click", () => {
+  setActiveFilter(filterCompleteBtn);
+  applyFilter("complete");
+});
+filterPendingBtn.addEventListener("click", () => {
+  setActiveFilter(filterPendingBtn);
+  applyFilter("pending");
+});
+
 // Add Task Event
 addTaskBtn.addEventListener("click", () => {
   addTask(taskInput.value.trim());
