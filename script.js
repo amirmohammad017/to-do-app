@@ -4,6 +4,10 @@ const addTaskBtn = document.getElementById("add-task-btn");
 const taskList = document.getElementById("task-list");
 let data = [];
 
+const filterAllBtn = document.getElementById("filter-all");
+const filterCompleteBtn = document.getElementById("filter-complete");
+const filterPendingBtn = document.getElementById("filter-pending");
+
 // Functions
 const editAction_block = () => {
   const lists = document.querySelectorAll("li");
@@ -128,6 +132,9 @@ const addTask = (taskText, taskCheck) => {
       input.removeAttribute("disabled");
       input.focus();
       input.select();
+      filterAllBtn.classList.add("btn-block");
+      filterCompleteBtn.classList.add("btn-block");
+      filterPendingBtn.classList.add("btn-block");
       addTaskBtn.classList.add("btn-block");
       clearList.classList.add("btn-block");
       taskInput.classList.add("btn-block");
@@ -140,6 +147,9 @@ const addTask = (taskText, taskCheck) => {
         deleteBtn.classList.remove("btn-disable");
         edit_done_btn.classList.add("btn-disable");
         input.setAttribute("disabled", "true");
+        filterAllBtn.classList.add("btn-block");
+        filterCompleteBtn.classList.add("btn-block");
+        filterPendingBtn.classList.add("btn-block");
         taskInput.classList.remove("btn-block");
         addTaskBtn.classList.remove("btn-block");
         clearList.classList.remove("btn-block");
@@ -156,10 +166,6 @@ const addTask = (taskText, taskCheck) => {
   saveToLocalStorage();
 };
 // Filter tasks
-const filterAllBtn = document.getElementById("filter-all");
-const filterCompleteBtn = document.getElementById("filter-complete");
-const filterPendingBtn = document.getElementById("filter-pending");
-
 function applyFilter(filterType) {
   const tasks = document.querySelectorAll("#task-list li");
   tasks.forEach((task) => {

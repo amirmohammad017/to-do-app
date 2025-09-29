@@ -296,9 +296,17 @@ li i.edit-btn:hover {
 
   #task-list li > div {
     justify-content: flex-end;
+    padding-right: 30px;
     width: 100%;
+    gap: 30px;
   }
 
+  #task-list li > div i {
+    font-size: 30px;
+  }
+  #task-list li > div button {
+    padding: 10px 25px;
+  }
   .btn-group {
     justify-content: stretch;
   }
