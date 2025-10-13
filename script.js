@@ -147,9 +147,9 @@ const addTask = (taskText, taskCheck) => {
         deleteBtn.classList.remove("btn-disable");
         edit_done_btn.classList.add("btn-disable");
         input.setAttribute("disabled", "true");
-        filterAllBtn.classList.add("btn-block");
-        filterCompleteBtn.classList.add("btn-block");
-        filterPendingBtn.classList.add("btn-block");
+        filterAllBtn.classList.remove("btn-block");
+        filterCompleteBtn.classList.remove("btn-block");
+        filterPendingBtn.classList.remove("btn-block");
         taskInput.classList.remove("btn-block");
         addTaskBtn.classList.remove("btn-block");
         clearList.classList.remove("btn-block");
